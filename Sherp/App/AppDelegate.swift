@@ -9,12 +9,6 @@
 import UIKit
 import RealmSwift
 
-
-
-
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,17 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
     
-    
-    // MARK: - Set default language on first initialization 
-    
+    // MARK: - Set default language on first initialization
     if DEFAULTS.objectForKey(userDefaultsKey_defaultLanguage) == nil {
       DEFAULTS.setObject("pt", forKey:userDefaultsKey_defaultLanguage)
     }
-    
-    if DEFAULTS.objectForKey(userDefaultsKey_dbHasUsers) == nil {
-      DEFAULTS.setObject("false", forKey:userDefaultsKey_dbHasUsers)
-    }
-    
     
     // MARK: Start Realm DB Instance
     uiRealm = try! Realm()

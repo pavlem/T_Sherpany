@@ -5,10 +5,7 @@
 //  Created by Pavle Mijatovic on 63//16.
 //  Copyright © 2016 Pavle Mijatovic. All rights reserved.
 //
-
 import Foundation
-
-
 
 struct AlbumPhotos {
   
@@ -17,7 +14,7 @@ struct AlbumPhotos {
   var url: String?
   var thumbUrl: String?
 
-  
+
   init(id:Int?, title: String?, url: String?, thumbUrl: String?) {
     self.id = id
     self.title = title

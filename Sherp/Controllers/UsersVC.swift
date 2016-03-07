@@ -16,7 +16,7 @@ class UsersVC: UITableViewController {
   let searchController = UISearchController(searchResultsController: nil)
   var usersForDB = [UserRealm]()
   
-
+  
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,13 +50,13 @@ class UsersVC: UITableViewController {
   }
   
   private func getUserData() {
-    let isKeyInDB = DEFAULTS.objectForKey(userDefaultsKey_dbHasUsers) as! String
-    
-    if isKeyInDB == "true" {
-      print("is in DB")
+    let usersFromRealm = uiRealm.objects(UserRealm)
+    if usersFromRealm.count > 1 {
+      print("Users are in DB")
       getUserDataFromDB()
+      
     } else {
-      print("not in db")
+      print("Users are not in db")
       getUserDataFromServer()
     }
   }
@@ -71,7 +71,7 @@ class UsersVC: UITableViewController {
     }
     
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
+    
   }
   
   private func getUserDataFromServer() {
@@ -141,7 +141,6 @@ class UsersVC: UITableViewController {
     for userR in self.usersForDB {
       DBHandler().add(userR)
     }
-    DEFAULTS.setObject("true", forKey: userDefaultsKey_dbHasUsers)
   }
   
   private func setupTableView() {

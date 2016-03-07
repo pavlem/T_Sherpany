@@ -2,11 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LanguageSelection</key>
+	<string>[DE]</string>
+	<key>labeLocalizedFromStoryBoard</key>
+	<string>labeLocalizedFromStoryBoard [DE]</string>
 	<key>users</key>
 	<string>Benutzer</string>
 	<key>start</key>
 	<string>Anfang</string>
 	<key>selectLanguage</key>
-	<string>Sprache auswählen[DE]</string>
+	<string>Sprache auswählen [DE]</string>
 </dict>
 </plist>

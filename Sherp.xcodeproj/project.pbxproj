@@ -36,6 +36,12 @@
 		9E8873B51C8D9D40004765B5 /* DHHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B11C8D9D40004765B5 /* DHHandler.swift */; };
 		9E8873B71C8D9D89004765B5 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B61C8D9D89004765B5 /* UserRealm.swift */; };
 		9E8873B81C8D9D89004765B5 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B61C8D9D89004765B5 /* UserRealm.swift */; };
+		9E8873BC1C8DD350004765B5 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF16BBF1C8C763400E2A874 /* Album.swift */; };
+		9E8873BD1C8DD473004765B5 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F531C8CDD9600773B5D /* RealmSwift.framework */; };
+		9E8873BE1C8DD476004765B5 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F521C8CDD9600773B5D /* Realm.framework */; };
+		9E8873C11C8DD4BA004765B5 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873BF1C8DD4BA004765B5 /* LocalizationTests.swift */; };
+		9E8873C31C8DD68E004765B5 /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873C21C8DD68E004765B5 /* LocalizedLabel.swift */; };
+		9E8873C41C8DD68E004765B5 /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873C21C8DD68E004765B5 /* LocalizedLabel.swift */; };
 		9EA45F541C8CDD9600773B5D /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F521C8CDD9600773B5D /* Realm.framework */; };
 		9EA45F551C8CDD9600773B5D /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F521C8CDD9600773B5D /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9EA45F561C8CDD9600773B5D /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F531C8CDD9600773B5D /* RealmSwift.framework */; };
@@ -124,6 +130,8 @@
 		9E8873B01C8D9D40004765B5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E8873B11C8D9D40004765B5 /* DHHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHHandler.swift; sourceTree = "<group>"; };
 		9E8873B61C8D9D89004765B5 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
+		9E8873BF1C8DD4BA004765B5 /* LocalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
+		9E8873C21C8DD68E004765B5 /* LocalizedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		9EA45F521C8CDD9600773B5D /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		9EA45F531C8CDD9600773B5D /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		9EE1E7251C8CDC9F00DDEF7D /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -154,6 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E8873BE1C8DD476004765B5 /* Realm.framework in Frameworks */,
+				9E8873BD1C8DD473004765B5 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				9E47F13D1C8C44FB00724682 /* SherpTests.swift */,
+				9E8873BF1C8DD4BA004765B5 /* LocalizationTests.swift */,
 				9E47F13F1C8C44FB00724682 /* Info.plist */,
 			);
 			path = SherpTests;
@@ -262,9 +273,9 @@
 				9E8873AD1C8D8512004765B5 /* UsersVC.swift */,
 				9EE2F8DE1C8C602A0089176B /* AlbumsVC.swift */,
 				9EF16BC11C8CACFA00E2A874 /* AlbumVC.swift */,
+				9EF5159B1C8CC53C0060ED05 /* ImageVC.swift */,
 				9EE2F8E71C8C60E70089176B /* UserCell.swift */,
 				9EF16BCA1C8CB41800E2A874 /* AlbumPhotoCell.swift */,
-				9EF5159B1C8CC53C0060ED05 /* ImageVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -280,6 +291,7 @@
 		9EE1E71F1C8CDC7000DDEF7D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9E8873C21C8DD68E004765B5 /* LocalizedLabel.swift */,
 				9E8873B01C8D9D40004765B5 /* Constants.swift */,
 				9E8873B11C8D9D40004765B5 /* DHHandler.swift */,
 				9EA45F521C8CDD9600773B5D /* Realm.framework */,
@@ -454,6 +466,7 @@
 				9EF5159C1C8CC53C0060ED05 /* ImageVC.swift in Sources */,
 				9E8873AE1C8D8512004765B5 /* UsersVC.swift in Sources */,
 				9EF16BCB1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */,
+				9E8873C31C8DD68E004765B5 /* LocalizedLabel.swift in Sources */,
 				9EE1E7261C8CDC9F00DDEF7D /* Configuration.swift in Sources */,
 				9E47F1661C8C474C00724682 /* LanguageVC.swift in Sources */,
 				9E8873B21C8D9D40004765B5 /* Constants.swift in Sources */,
@@ -479,6 +492,7 @@
 				9E8873AF1C8D8512004765B5 /* UsersVC.swift in Sources */,
 				9EF5159D1C8CC53C0060ED05 /* ImageVC.swift in Sources */,
 				9E47F1611C8C466D00724682 /* AppDelegate.swift in Sources */,
+				9E8873C41C8DD68E004765B5 /* LocalizedLabel.swift in Sources */,
 				9EF16BCC1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */,
 				9EE1E7271C8CDC9F00DDEF7D /* Configuration.swift in Sources */,
 				9E8873B31C8D9D40004765B5 /* Constants.swift in Sources */,
@@ -492,6 +506,8 @@
 				9EF16BC31C8CACFA00E2A874 /* AlbumVC.swift in Sources */,
 				9EF16BC91C8CAF0F00E2A874 /* AlbumPhotos.swift in Sources */,
 				9E8873B51C8D9D40004765B5 /* DHHandler.swift in Sources */,
+				9E8873BC1C8DD350004765B5 /* Album.swift in Sources */,
+				9E8873C11C8DD4BA004765B5 /* LocalizationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +689,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SherpTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BB.SherpTests;
@@ -685,6 +705,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SherpTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BB.SherpTests;

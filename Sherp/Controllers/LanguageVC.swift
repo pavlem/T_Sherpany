@@ -29,7 +29,7 @@ class LanguageVC: UITableViewController {
     tableView.backgroundColor = UIColor.whiteColor()
   }
   
-  
+
   // MARK: - Delegates
   // MARK: Table view data source
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

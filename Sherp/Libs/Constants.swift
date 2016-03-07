@@ -1,10 +1,12 @@
 //
 //  Constants.swift
-//  SatBridge
+//  Sherp
 //
-//  Created by Pavle Mijatovic on 2/25/16.
-//  Copyright © 2016 Carnegie Technologies. All rights reserved.
+//  Created by Pavle Mijatovic on 63//16.
+//  Copyright © 2016 Pavle Mijatovic. All rights reserved.
 //
+
+
 
 import Foundation
 import UIKit
