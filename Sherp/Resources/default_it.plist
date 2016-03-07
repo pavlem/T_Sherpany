@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>users</key>
-	<string>Benutzer [IT]</string>
+	<string>Utenti [IT]</string>
 	<key>start</key>
-	<string>Anfang [IT]</string>
+	<string>Inizio [IT]</string>
 	<key>selectLanguage</key>
-	<string>Sprache auswählen [IT]</string>
+	<string>Seleziona la lingua [IT]</string>
 </dict>
 </plist>

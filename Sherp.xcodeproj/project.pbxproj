@@ -30,6 +30,12 @@
 		9E8873A91C8D77A0004765B5 /* default_it.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E8873A71C8D77A0004765B5 /* default_it.plist */; };
 		9E8873AE1C8D8512004765B5 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873AD1C8D8512004765B5 /* UsersVC.swift */; };
 		9E8873AF1C8D8512004765B5 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873AD1C8D8512004765B5 /* UsersVC.swift */; };
+		9E8873B21C8D9D40004765B5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B01C8D9D40004765B5 /* Constants.swift */; };
+		9E8873B31C8D9D40004765B5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B01C8D9D40004765B5 /* Constants.swift */; };
+		9E8873B41C8D9D40004765B5 /* DHHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B11C8D9D40004765B5 /* DHHandler.swift */; };
+		9E8873B51C8D9D40004765B5 /* DHHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B11C8D9D40004765B5 /* DHHandler.swift */; };
+		9E8873B71C8D9D89004765B5 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B61C8D9D89004765B5 /* UserRealm.swift */; };
+		9E8873B81C8D9D89004765B5 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8873B61C8D9D89004765B5 /* UserRealm.swift */; };
 		9EA45F541C8CDD9600773B5D /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F521C8CDD9600773B5D /* Realm.framework */; };
 		9EA45F551C8CDD9600773B5D /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F521C8CDD9600773B5D /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9EA45F561C8CDD9600773B5D /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA45F531C8CDD9600773B5D /* RealmSwift.framework */; };
@@ -115,6 +121,9 @@
 		9E8873A61C8D778D004765B5 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9E8873A71C8D77A0004765B5 /* default_it.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_it.plist; sourceTree = "<group>"; };
 		9E8873AD1C8D8512004765B5 /* UsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersVC.swift; sourceTree = "<group>"; };
+		9E8873B01C8D9D40004765B5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9E8873B11C8D9D40004765B5 /* DHHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHHandler.swift; sourceTree = "<group>"; };
+		9E8873B61C8D9D89004765B5 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
 		9EA45F521C8CDD9600773B5D /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		9EA45F531C8CDD9600773B5D /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		9EE1E7251C8CDC9F00DDEF7D /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -263,6 +272,7 @@
 		9E8873A41C8D739E004765B5 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				9E8873B61C8D9D89004765B5 /* UserRealm.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -270,6 +280,8 @@
 		9EE1E71F1C8CDC7000DDEF7D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9E8873B01C8D9D40004765B5 /* Constants.swift */,
+				9E8873B11C8D9D40004765B5 /* DHHandler.swift */,
 				9EA45F521C8CDD9600773B5D /* Realm.framework */,
 				9EA45F531C8CDD9600773B5D /* RealmSwift.framework */,
 				9EE1E7251C8CDC9F00DDEF7D /* Configuration.swift */,
@@ -444,14 +456,17 @@
 				9EF16BCB1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */,
 				9EE1E7261C8CDC9F00DDEF7D /* Configuration.swift in Sources */,
 				9E47F1661C8C474C00724682 /* LanguageVC.swift in Sources */,
+				9E8873B21C8D9D40004765B5 /* Constants.swift in Sources */,
 				9E47F16A1C8C4BF200724682 /* LocalizationHandler.swift in Sources */,
 				9EE2F8DF1C8C602A0089176B /* AlbumsVC.swift in Sources */,
 				9EE2F8E81C8C60E70089176B /* UserCell.swift in Sources */,
 				9E47F16C1C8C4BF200724682 /* String+Localization.swift in Sources */,
+				9E8873B71C8D9D89004765B5 /* UserRealm.swift in Sources */,
 				9EE2F8EB1C8C63250089176B /* User.swift in Sources */,
 				9EF16BC21C8CACFA00E2A874 /* AlbumVC.swift in Sources */,
 				9EF16BC81C8CAF0F00E2A874 /* AlbumPhotos.swift in Sources */,
 				9EF16BC01C8C763400E2A874 /* Album.swift in Sources */,
+				9E8873B41C8D9D40004765B5 /* DHHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,14 +481,17 @@
 				9E47F1611C8C466D00724682 /* AppDelegate.swift in Sources */,
 				9EF16BCC1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */,
 				9EE1E7271C8CDC9F00DDEF7D /* Configuration.swift in Sources */,
+				9E8873B31C8D9D40004765B5 /* Constants.swift in Sources */,
 				9E47F16D1C8C4BF200724682 /* String+Localization.swift in Sources */,
 				9EE2F8E01C8C602A0089176B /* AlbumsVC.swift in Sources */,
 				9E47F13E1C8C44FB00724682 /* SherpTests.swift in Sources */,
 				9EE2F8EC1C8C63250089176B /* User.swift in Sources */,
+				9E8873B81C8D9D89004765B5 /* UserRealm.swift in Sources */,
 				9E47F1641C8C468C00724682 /* StartVC.swift in Sources */,
 				9EE2F8E91C8C60E70089176B /* UserCell.swift in Sources */,
 				9EF16BC31C8CACFA00E2A874 /* AlbumVC.swift in Sources */,
 				9EF16BC91C8CAF0F00E2A874 /* AlbumPhotos.swift in Sources */,
+				9E8873B51C8D9D40004765B5 /* DHHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

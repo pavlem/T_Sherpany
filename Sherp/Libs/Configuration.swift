@@ -12,6 +12,8 @@ import Foundation
 
 let DEFAULTS = NSUserDefaults.standardUserDefaults()
 let userDefaultsKey_defaultLanguage = "USER_DEFAULT_LANGUAGE"
+let userDefaultsKey_dbHasUsers = "DB_HAS_USERS"
+
 
 // MARK: - URLs
 let usersReqUrlString = "http://jsonplaceholder.typicode.com/users"

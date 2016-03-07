@@ -13,32 +13,31 @@ class UsersVC: UITableViewController {
   // MARK: - Properties
   var users = [User]()
   var filteredUsers = [User]()
-  var sesionTask = NSURLSessionDataTask()
   let searchController = UISearchController(searchResultsController: nil)
+  var usersForDB = [UserRealm]()
   
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     
     setupSearchController()
     setupTableView()
     getUserData()
     setLocalizedLabels()
-    
-    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    self.sesionTask.cancel()
+    //    self.sesionTask.cancel()
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
   }
   
   // MARK: - Private
   private func setLocalizedLabels() {
     self.navigationItem.title = "users".localized()
-
   }
   
   private func setupSearchController() {
@@ -51,6 +50,31 @@ class UsersVC: UITableViewController {
   }
   
   private func getUserData() {
+    let isKeyInDB = DEFAULTS.objectForKey(userDefaultsKey_dbHasUsers) as! String
+    
+    if isKeyInDB == "true" {
+      print("is in DB")
+      getUserDataFromDB()
+    } else {
+      print("not in db")
+      getUserDataFromServer()
+    }
+  }
+  
+  private func getUserDataFromDB() {
+    
+    let usersFromRealm = uiRealm.objects(UserRealm)
+    
+    for userInRealm in usersFromRealm {
+      let user = User(userId: userInRealm.userId, name: userInRealm.name, email: userInRealm.email, coCatchPhrase: userInRealm.coCatchPhrase)
+      self.users.append(user)
+    }
+    
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+  }
+  
+  private func getUserDataFromServer() {
     
     let requestURL: NSURL = NSURL(string: usersReqUrlString)!
     let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
@@ -80,6 +104,13 @@ class UsersVC: UITableViewController {
                     if let company = user["company"] as? [String : AnyObject]  {
                       if let catchPhrase = company["catchPhrase"] as? String {
                         let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
+                        
+                        let userForRealm = UserRealm()
+                        userForRealm.name = name
+                        userForRealm.email = email
+                        userForRealm.coCatchPhrase = catchPhrase
+                        userForRealm.userId = idUser!
+                        self.usersForDB.append(userForRealm)
                         self.users.append(user)
                       }
                     }
@@ -88,6 +119,7 @@ class UsersVC: UITableViewController {
               }
             }
             
+            self.saveUsersToDB()
             
             dispatch_async(dispatch_get_main_queue(), {
               self.tableView.reloadData()
@@ -102,8 +134,14 @@ class UsersVC: UITableViewController {
     }
     
     task.resume()
-    self.sesionTask = task
+  }
+  
+  private func saveUsersToDB() {
     
+    for userR in self.usersForDB {
+      DBHandler().add(userR)
+    }
+    DEFAULTS.setObject("true", forKey: userDefaultsKey_dbHasUsers)
   }
   
   private func setupTableView() {
@@ -128,7 +166,6 @@ class UsersVC: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
     var user = users[indexPath.row]
     
-    
     if searchController.active && searchController.searchBar.text != "" {
       user = filteredUsers[indexPath.row]
     } else {
@@ -150,7 +187,6 @@ class UsersVC: UITableViewController {
     if (segue.identifier == "AlbumsSegue") {
       let indexPath = self.tableView.indexPathForSelectedRow!
       let albumsVC = segue.destinationViewController as! AlbumsVC
-      
       
       if searchController.active && searchController.searchBar.text != "" {
         albumsVC.user = self.filteredUsers[indexPath.row]

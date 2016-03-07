@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 
 
@@ -29,8 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       DEFAULTS.setObject("pt", forKey:userDefaultsKey_defaultLanguage)
     }
     
+    if DEFAULTS.objectForKey(userDefaultsKey_dbHasUsers) == nil {
+      DEFAULTS.setObject("false", forKey:userDefaultsKey_dbHasUsers)
+    }
     
     
+    // MARK: Start Realm DB Instance
+    uiRealm = try! Realm()
     
     return true
   }

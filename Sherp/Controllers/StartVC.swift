@@ -13,6 +13,7 @@ class StartVC: UIViewController {
   // MARK: - Properties
   @IBOutlet weak var startBttn: UIButton!
   @IBOutlet weak var selectLanguageBtn: UIButton!
+
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -21,12 +22,21 @@ class StartVC: UIViewController {
   
     override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    setupLabels()
+    setupViewsAndLabels()
   }
 
+  
   // MARK: - Private
-  private func setupLabels() {
+  private func setupViewsAndLabels() {
     startBttn.setTitle("start".localized(), forState: UIControlState.Normal)
     selectLanguageBtn.setTitle("selectLanguage".localized(), forState: UIControlState.Normal)
+    
+    self.view.backgroundColor = Color.testColor
+  }
+  
+  @IBAction func clearDB(sender: UIButton) {
+    
+    DBHandler().clearAllData()
+    DEFAULTS.setObject("false", forKey:userDefaultsKey_dbHasUsers)
   }
 }

@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xql-Ia-gTa">
-                                <rect key="frame" x="246" y="287" width="109" height="30"/>
-                                <state key="normal" title="selectLanguage"/>
+                                <rect key="frame" x="243" y="287" width="115" height="30"/>
+                                <state key="normal" title="Select Language"/>
                                 <connections>
                                     <segue destination="7Qk-wI-nuC" kind="show" id="2lh-LE-Q2y"/>
                                 </connections>
@@ -32,12 +32,21 @@
                                     <segue destination="0e6-Ie-f6w" kind="show" id="KYL-M1-ckg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIt-gi-HZt">
+                                <rect key="frame" x="270" y="325" width="61" height="30"/>
+                                <state key="normal" title="Clear DB"/>
+                                <connections>
+                                    <action selector="clearDB:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1XV-Wp-tFv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xql-Ia-gTa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="2" id="E1z-G6-PZ2"/>
                             <constraint firstItem="Qpw-d7-8YG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nd5-SD-cYO"/>
+                            <constraint firstItem="lIt-gi-HZt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="40" id="SPc-Qm-qeb"/>
                             <constraint firstItem="xql-Ia-gTa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XEG-Ph-ocT"/>
+                            <constraint firstItem="lIt-gi-HZt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcA-sK-mM2"/>
                             <constraint firstItem="Qpw-d7-8YG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-36" id="jsm-iP-GM6"/>
                         </constraints>
                     </view>
