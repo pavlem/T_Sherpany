@@ -14,5 +14,5 @@ struct Config {
 }
 
 struct Color {
-  static let testColor = UIColor(red: 254.0/255, green: 134.0/255, blue: 43.0/255, alpha: 1.0)
+  static let sherpOrangeColor = UIColor(red: 255.0/255, green: 218.0/255, blue: 110.0/255, alpha: 1.0)
 }

@@ -31,7 +31,7 @@ class StartVC: UIViewController {
     startBttn.setTitle("start".localized(), forState: UIControlState.Normal)
     selectLanguageBtn.setTitle("selectLanguage".localized(), forState: UIControlState.Normal)
     
-    self.view.backgroundColor = Color.testColor
+    self.view.backgroundColor = Color.sherpOrangeColor
   }
   
   @IBAction func clearDB(sender: UIButton) {
