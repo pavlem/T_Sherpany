@@ -12,40 +12,51 @@ class UsersVC: UITableViewController {
   
   // MARK: - Properties
   var users = [User]()
+  var filteredUsers = [User]()
   var sesionTask = NSURLSessionDataTask()
+  let searchController = UISearchController(searchResultsController: nil)
   
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    setupSearchController()
     setupTableView()
     getUserData()
-    
-    self.navigationItem.title = "users".localized()
+    setLocalizedLabels()
     
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
   }
   
-  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    
     self.sesionTask.cancel()
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
   }
   
+  // MARK: - Private
+  private func setLocalizedLabels() {
+    self.navigationItem.title = "users".localized()
+
+  }
   
-  // MARK: - Properties
+  private func setupSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.searchBar.delegate = self
+    definesPresentationContext = true
+    searchController.dimsBackgroundDuringPresentation = false
+    searchController.searchBar.scopeButtonTitles = nil;
+    tableView.tableHeaderView = searchController.searchBar
+  }
+  
   private func getUserData() {
     
     let requestURL: NSURL = NSURL(string: usersReqUrlString)!
     let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
     let sesionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sesionConfig.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-    //    let session = NSURLSession.sharedSession()
     let session = NSURLSession(configuration: sesionConfig)
-    
     let task = session.dataTaskWithRequest(urlRequest) {
       (data, response, error) -> Void in
       
@@ -96,9 +107,6 @@ class UsersVC: UITableViewController {
   }
   
   private func setupTableView() {
-    // Table view itself
-    //    tableView.delegate = self
-    //    tableView.dataSource = self
     tableView.estimatedRowHeight = 68.0
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -106,16 +114,26 @@ class UsersVC: UITableViewController {
     tableView.backgroundColor = UIColor.whiteColor()
   }
   
-  // MARK: - Extensions
+  
+  // MARK: - Delegates
   // MARK: UITableViewDataSource
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if searchController.active && searchController.searchBar.text != "" {
+      return filteredUsers.count
+    }
     return self.users.count
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
-    let user = users[indexPath.row]
+    var user = users[indexPath.row]
     
+    
+    if searchController.active && searchController.searchBar.text != "" {
+      user = filteredUsers[indexPath.row]
+    } else {
+      user = users[indexPath.row]
+    }
     cell.name.text = user.name
     cell.email.text = user.email
     cell.coCatchPhrase.text = user.coCatchPhrase
@@ -123,22 +141,52 @@ class UsersVC: UITableViewController {
     return cell
   }
   
-  
   // MARK:  UITableViewDelegate Methods
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    //    print(users[indexPath.row])
+    
+    if searchController.active && searchController.searchBar.text != "" {
+      print(filteredUsers[indexPath.row])
+    } else {
+      print(users[indexPath.row])
+    }
+    
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
-  
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
     if (segue.identifier == "AlbumsSegue") {
       let indexPath = self.tableView.indexPathForSelectedRow!
       let albumsVC = segue.destinationViewController as! AlbumsVC
-      albumsVC.user = self.users[indexPath.row]
+      
+      
+      if searchController.active && searchController.searchBar.text != "" {
+        albumsVC.user = self.filteredUsers[indexPath.row]
+      } else {
+        albumsVC.user = self.users[indexPath.row]
+      }
     }
   }
   
+  func filterContentForSearchText(searchText: String) {
+    filteredUsers = users.filter({( user : User) -> Bool in
+      return user.name!.lowercaseString.containsString(searchText.lowercaseString)
+    })
+    tableView.reloadData()
+  }
 }
 
+// MARK: - Extensions
+// MARK: UISearchResultsUpdating Delegate
+extension UsersVC: UISearchBarDelegate {
+  
+  func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    filterContentForSearchText(searchBar.text!)
+  }
+}
 
+// MARK: UISearchResultsUpdating Delegate
+extension UsersVC: UISearchResultsUpdating {
+  func updateSearchResultsForSearchController(searchController: UISearchController) {
+    filterContentForSearchText(searchController.searchBar.text!)
+  }
+}

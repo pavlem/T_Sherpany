@@ -9,21 +9,19 @@
 import UIKit
 
 class AlbumPhotoCell: UITableViewCell {
-
+  
   @IBOutlet weak var albumPhotoTitleImage: UIImageView!
   @IBOutlet weak var albumPhotoTitle: UILabel!
   @IBOutlet weak var photoActivityIndicator: UIActivityIndicatorView!
   
   
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    // Configure the view for the selected state
+  }
 }

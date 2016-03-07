@@ -10,12 +10,11 @@ import UIKit
 
 class AlbumsVC: UIViewController {
   
+  // MARK: - Properties
   @IBOutlet weak var tableView: UITableView!
   var albums = [Album]()
   var user = User?()
-//  var sesionTask = NSURLSessionDataTask()
 
-  
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -31,11 +30,11 @@ class AlbumsVC: UIViewController {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-//    self.sesionTask.cancel()
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
   }
   
-  // MARK: - Properties
+  
+  // MARK: - Private
   private func getUserData() {
     
     let requestURL: NSURL = NSURL(string: albumsReqUrlString)!
@@ -43,9 +42,7 @@ class AlbumsVC: UIViewController {
     
     let sesionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sesionConfig.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-    //    let session = NSURLSession.sharedSession()
     let session = NSURLSession(configuration: sesionConfig)
-    
     
     let task = session.dataTaskWithRequest(urlRequest) {
       (data, response, error) -> Void in
@@ -77,8 +74,6 @@ class AlbumsVC: UIViewController {
                   }
                 }
               }
-              
-
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -94,8 +89,6 @@ class AlbumsVC: UIViewController {
     }
     
     task.resume()
-//    self.sesionTask = task
-
   }
   
   private func setupTableView() {
@@ -146,4 +139,3 @@ extension AlbumsVC: UITableViewDelegate {
     }
   }
 }
-

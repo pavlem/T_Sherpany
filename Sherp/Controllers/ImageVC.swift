@@ -10,10 +10,11 @@ import UIKit
 
 class ImageVC: UIViewController {
   
+  // MARK: - Properties
   @IBOutlet weak var imageView: UIImageView!
   var imageUrl = ""
   
-
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     

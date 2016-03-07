@@ -15,7 +15,6 @@ class LanguageVC: UITableViewController {
     super.viewDidLoad()
     
     setupTableView()
-    
   }
   
   // MARK: - Private

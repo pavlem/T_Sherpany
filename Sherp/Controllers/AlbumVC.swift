@@ -11,10 +11,10 @@ import UIKit
 
 class AlbumVC: UIViewController {
   
+  // MARK: - Properties
   @IBOutlet weak var tableView: UITableView!
   var albumPhotosProperties = [AlbumPhotos]()
   var album = Album?()
-  var sesionTask = NSURLSessionDataTask()
   
   
   // MARK: - Lifecycle
@@ -31,7 +31,6 @@ class AlbumVC: UIViewController {
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     
-    self.sesionTask.cancel()
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
   }
   
@@ -44,9 +43,7 @@ class AlbumVC: UIViewController {
     
     let sesionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sesionConfig.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-    //    let session = NSURLSession.sharedSession()
     let session = NSURLSession(configuration: sesionConfig)
-    
     
     let task = session.dataTaskWithRequest(urlRequest) {
       (data, response, error) -> Void in
@@ -84,17 +81,11 @@ class AlbumVC: UIViewController {
                           
                         }
                       }
-                      
-                      
-                      
                     }
                   }
                 }
               }
-              
-              
             }
-            
             
             dispatch_async(dispatch_get_main_queue(), {
               self.tableView.reloadData()
@@ -109,11 +100,7 @@ class AlbumVC: UIViewController {
     }
     
     task.resume()
-    
-    self.sesionTask = task
-    
   }
-  
   
   private func setupTableView() {
     // Table view itself
@@ -126,8 +113,6 @@ class AlbumVC: UIViewController {
     tableView.backgroundColor = UIColor.whiteColor()
   }
 }
-
-
 
 
 // MARK: - Extensions
@@ -168,7 +153,6 @@ extension AlbumVC: UITableViewDataSource {
   }
 }
 
-
 extension AlbumVC: UITableViewDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -176,13 +160,13 @@ extension AlbumVC: UITableViewDelegate {
   }
   
   
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-      if (segue.identifier == "ImageViewSegue") {
-  
-        let indexPath = self.tableView.indexPathForSelectedRow!
-        let albumPhoto = self.albumPhotosProperties[indexPath.row]
-        let imageVC = segue.destinationViewController as! ImageVC
-        imageVC.imageUrl = albumPhoto.url!
-      }
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    if (segue.identifier == "ImageViewSegue") {
+      
+      let indexPath = self.tableView.indexPathForSelectedRow!
+      let albumPhoto = self.albumPhotosProperties[indexPath.row]
+      let imageVC = segue.destinationViewController as! ImageVC
+      imageVC.imageUrl = albumPhoto.url!
     }
+  }
 }
