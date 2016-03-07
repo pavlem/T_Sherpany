@@ -143,13 +143,6 @@ class UsersVC: UITableViewController {
   
   // MARK:  UITableViewDelegate Methods
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
-    if searchController.active && searchController.searchBar.text != "" {
-      print(filteredUsers[indexPath.row])
-    } else {
-      print(users[indexPath.row])
-    }
-    
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   

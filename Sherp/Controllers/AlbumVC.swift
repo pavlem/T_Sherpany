@@ -61,15 +61,9 @@ class AlbumVC: UIViewController {
           
           if let albumsJson = json as? [[String: AnyObject]] {
             for albumPhotos in albumsJson {
-              
-              
-              
+
               if let idAlbum = albumPhotos["albumId"] as? Int? {
                 if idAlbum == self.album?.albumID {
-                  
-                  print(albumPhotos)
-                  
-                  
                   
                   if let id = albumPhotos["id"] as? Int? {
                     if let title = albumPhotos["title"] as? String {

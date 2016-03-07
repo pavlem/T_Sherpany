@@ -24,4 +24,10 @@ class UserCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
   }
+  
+  override func prepareForReuse() {
+    name.text = ""
+    email.text = ""
+    coCatchPhrase.text = ""
+  }
 }
