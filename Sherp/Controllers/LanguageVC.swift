@@ -79,5 +79,3 @@ class LanguageVC: UITableViewController {
     navigationController?.popViewControllerAnimated(true)
   }
 }
-
-

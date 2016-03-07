@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Bfy-5W-ojw"; */
+"Bfy-5W-ojw.text" = "Title";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Ges-dG-F5Z"; */
+"Ges-dG-F5Z.text" = "Name";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "I5n-I2-bz8"; */
+"I5n-I2-bz8.text" = "Title";
+
+/* Class = "UILabel"; text = "E-mail"; ObjectID = "Lgh-gt-MzU"; */
+"Lgh-gt-MzU.text" = "E-mail";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "Qpw-d7-8YG"; */
+"Qpw-d7-8YG.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Co Catch phrase"; ObjectID = "jzI-Ia-goV"; */
+"jzI-Ia-goV.text" = "Co Catch phrase";
+
+/* Class = "UIButton"; normalTitle = "selectLanguage"; ObjectID = "xql-Ia-gTa"; */
+"xql-Ia-gTa.normalTitle" = "selectLanguage";

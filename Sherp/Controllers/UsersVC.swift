@@ -8,13 +8,12 @@
 
 import UIKit
 
-class UsersVC: UIViewController {
+class UsersVC: UITableViewController {
   
   // MARK: - Properties
-  @IBOutlet weak var tableView: UITableView!
   var users = [User]()
   var sesionTask = NSURLSessionDataTask()
-
+  
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -24,7 +23,7 @@ class UsersVC: UIViewController {
     getUserData()
     
     self.navigationItem.title = "users".localized()
-
+    
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
   }
   
@@ -41,7 +40,7 @@ class UsersVC: UIViewController {
   private func getUserData() {
     
     let requestURL: NSURL = NSURL(string: usersReqUrlString)!
-    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)    
+    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
     let sesionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sesionConfig.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
     //    let session = NSURLSession.sharedSession()
@@ -93,30 +92,27 @@ class UsersVC: UIViewController {
     
     task.resume()
     self.sesionTask = task
-
+    
   }
   
   private func setupTableView() {
     // Table view itself
-    tableView.delegate = self
-    tableView.dataSource = self
+    //    tableView.delegate = self
+    //    tableView.dataSource = self
     tableView.estimatedRowHeight = 68.0
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.tableFooterView = UIView(frame: CGRectZero)
     tableView.tableFooterView!.hidden = true
     tableView.backgroundColor = UIColor.whiteColor()
   }
-}
-
-
-// MARK: - Extensions
-// MARK: UITableViewDataSource
-extension UsersVC: UITableViewDataSource {
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  
+  // MARK: - Extensions
+  // MARK: UITableViewDataSource
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.users.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
     let user = users[indexPath.row]
     
@@ -126,14 +122,11 @@ extension UsersVC: UITableViewDataSource {
     
     return cell
   }
-}
-
-
-// MARK:  UITableViewDelegate Methods
-extension UsersVC: UITableViewDelegate {
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    print(users[indexPath.row])
+  
+  // MARK:  UITableViewDelegate Methods
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //    print(users[indexPath.row])
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
@@ -145,4 +138,7 @@ extension UsersVC: UITableViewDelegate {
       albumsVC.user = self.users[indexPath.row]
     }
   }
+  
 }
+
+
