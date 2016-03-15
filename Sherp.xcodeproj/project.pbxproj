@@ -65,6 +65,9 @@
 		9EF16BCC1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF16BCA1C8CB41800E2A874 /* AlbumPhotoCell.swift */; };
 		9EF5159C1C8CC53C0060ED05 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF5159B1C8CC53C0060ED05 /* ImageVC.swift */; };
 		9EF5159D1C8CC53C0060ED05 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF5159B1C8CC53C0060ED05 /* ImageVC.swift */; };
+		9EF96E781C9867F2000EEFAB /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF96E771C9867F2000EEFAB /* HelperFunctions.swift */; };
+		9EF96E7C1C987003000EEFAB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF96E7B1C987003000EEFAB /* SwiftyJSON.swift */; };
+		9EF96E7D1C987003000EEFAB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF96E7B1C987003000EEFAB /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,8 @@
 		9EF16BC71C8CAF0F00E2A874 /* AlbumPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumPhotos.swift; sourceTree = "<group>"; };
 		9EF16BCA1C8CB41800E2A874 /* AlbumPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumPhotoCell.swift; sourceTree = "<group>"; };
 		9EF5159B1C8CC53C0060ED05 /* ImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
+		9EF96E771C9867F2000EEFAB /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		9EF96E7B1C987003000EEFAB /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +296,8 @@
 		9EE1E71F1C8CDC7000DDEF7D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9EF96E7B1C987003000EEFAB /* SwiftyJSON.swift */,
+				9EF96E771C9867F2000EEFAB /* HelperFunctions.swift */,
 				9E8873C21C8DD68E004765B5 /* LocalizedLabel.swift */,
 				9E8873B01C8D9D40004765B5 /* Constants.swift */,
 				9E8873B11C8D9D40004765B5 /* DHHandler.swift */,
@@ -466,12 +473,14 @@
 				9EF5159C1C8CC53C0060ED05 /* ImageVC.swift in Sources */,
 				9E8873AE1C8D8512004765B5 /* UsersVC.swift in Sources */,
 				9EF16BCB1C8CB41800E2A874 /* AlbumPhotoCell.swift in Sources */,
+				9EF96E781C9867F2000EEFAB /* HelperFunctions.swift in Sources */,
 				9E8873C31C8DD68E004765B5 /* LocalizedLabel.swift in Sources */,
 				9EE1E7261C8CDC9F00DDEF7D /* Configuration.swift in Sources */,
 				9E47F1661C8C474C00724682 /* LanguageVC.swift in Sources */,
 				9E8873B21C8D9D40004765B5 /* Constants.swift in Sources */,
 				9E47F16A1C8C4BF200724682 /* LocalizationHandler.swift in Sources */,
 				9EE2F8DF1C8C602A0089176B /* AlbumsVC.swift in Sources */,
+				9EF96E7C1C987003000EEFAB /* SwiftyJSON.swift in Sources */,
 				9EE2F8E81C8C60E70089176B /* UserCell.swift in Sources */,
 				9E47F16C1C8C4BF200724682 /* String+Localization.swift in Sources */,
 				9E8873B71C8D9D89004765B5 /* UserRealm.swift in Sources */,
@@ -490,6 +499,7 @@
 				9E47F1671C8C474C00724682 /* LanguageVC.swift in Sources */,
 				9E47F16B1C8C4BF200724682 /* LocalizationHandler.swift in Sources */,
 				9E8873AF1C8D8512004765B5 /* UsersVC.swift in Sources */,
+				9EF96E7D1C987003000EEFAB /* SwiftyJSON.swift in Sources */,
 				9EF5159D1C8CC53C0060ED05 /* ImageVC.swift in Sources */,
 				9E47F1611C8C466D00724682 /* AppDelegate.swift in Sources */,
 				9E8873C41C8DD68E004765B5 /* LocalizedLabel.swift in Sources */,

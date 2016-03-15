@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class UsersVC: UITableViewController {
   
   // MARK: - Properties
@@ -16,6 +17,8 @@ class UsersVC: UITableViewController {
   let searchController = UISearchController(searchResultsController: nil)
   var usersForDB = [UserRealm]()
   
+  var blockingView : UIView?
+  var jsonDataSwifty: JSON?
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -23,11 +26,25 @@ class UsersVC: UITableViewController {
     
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     
+    //    let paja = prepareLoadingIndicatorVC(self)
+    //    self.presentViewController(paja, animated: true, completion: nil)
+    
+    
+    
+    let frame = navigationController?.view.frame
+    self.blockingView = prepareLoadingIndicatorView((navigationController?.view)!, withFrame: frame!)
+    
     setupSearchController()
     setupTableView()
     getUserData()
     setLocalizedLabels()
   }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.setNeedsDisplay()
+  }
+  
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
@@ -45,8 +62,8 @@ class UsersVC: UITableViewController {
     searchController.searchBar.delegate = self
     definesPresentationContext = true
     searchController.dimsBackgroundDuringPresentation = false
-    searchController.searchBar.scopeButtonTitles = nil;
     tableView.tableHeaderView = searchController.searchBar
+    tableView.contentOffset = CGPointMake(0, self.searchController.searchBar.frame.size.height);
   }
   
   private func getUserData() {
@@ -71,7 +88,7 @@ class UsersVC: UITableViewController {
     }
     
     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-    
+    self.blockingView?.removeFromSuperview()
   }
   
   private func getUserDataFromServer() {
@@ -89,47 +106,102 @@ class UsersVC: UITableViewController {
       
       if (statusCode == 200) {
         
-        do{
+        
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        
+        dispatch_async(dispatch_get_main_queue(), {
+          self.blockingView?.removeFromSuperview()
+        })
+        
+        
+        // MARK: - SwiftyJSON Approach
+        let jsonSwifty = JSON(data: data!)
+        for (index, _) in jsonSwifty.enumerate() {
           
-          UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+          let name = jsonSwifty[index]["name"].string
+          let email = jsonSwifty[index]["email"].string
+          let catchPhrase = jsonSwifty[index]["company"]["catchPhrase"].string
+          let idUser = jsonSwifty[index]["id"].int
           
-          let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+          let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
           
-          if let usersJson = json as? [[String: AnyObject]] {
-            for user in usersJson {
-              
-              if let idUser = user["id"] as? Int? {
-                if let name = user["name"] as? String {
-                  if let email = user["email"] as? String {
-                    if let company = user["company"] as? [String : AnyObject]  {
-                      if let catchPhrase = company["catchPhrase"] as? String {
-                        let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
-                        
-                        let userForRealm = UserRealm()
-                        userForRealm.name = name
-                        userForRealm.email = email
-                        userForRealm.coCatchPhrase = catchPhrase
-                        userForRealm.userId = idUser!
-                        self.usersForDB.append(userForRealm)
-                        self.users.append(user)
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            
-            self.saveUsersToDB()
-            
-            dispatch_async(dispatch_get_main_queue(), {
-              self.tableView.reloadData()
-            })
-          }
-          
-        } catch {
-          print("Error with Json: \(error)")
-          
+          let userForRealm = UserRealm()
+          userForRealm.name = name!
+          userForRealm.email = email!
+          userForRealm.coCatchPhrase = catchPhrase!
+          userForRealm.userId = idUser!
+          self.usersForDB.append(userForRealm)
+          self.users.append(user)
         }
+        
+        self.saveUsersToDB()
+        
+        dispatch_async(dispatch_get_main_queue(), {
+          self.tableView.reloadData()
+        })
+        
+ 
+        // MARK: - NATIVE Approach
+//        do{
+//          let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+        
+        // MARK:  NATIVE chained binding
+
+//          if let usersJson = json as? [[String: AnyObject]] {
+//            for user in usersJson {
+//              
+//              if let idUser = user["id"] as? Int?, let name = user["name"] as? String, let email = user["email"] as? String, let company = user["company"] as? [String : AnyObject], let catchPhrase = company["catchPhrase"] as? String {
+//                let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
+//                
+//                let userForRealm = UserRealm()
+//                userForRealm.name = name
+//                userForRealm.email = email
+//                userForRealm.coCatchPhrase = catchPhrase
+//                userForRealm.userId = idUser!
+//                self.usersForDB.append(userForRealm)
+//                self.users.append(user)
+//              }
+//            }
+        
+        // MARK:  NATIVE pyramide
+//            
+//            //            if let usersJson = json as? [[String: AnyObject]] {
+//            //              for user in usersJson {
+//            //
+//            //                if let idUser = user["id"] as? Int? {
+//            //                  if let name = user["name"] as? String {
+//            //                    if let email = user["email"] as? String {
+//            //                      if let company = user["company"] as? [String : AnyObject]  {
+//            //                        if let catchPhrase = company["catchPhrase"] as? String {
+//            //                          let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
+//            //
+//            //                          let userForRealm = UserRealm()
+//            //                          userForRealm.name = name
+//            //                          userForRealm.email = email
+//            //                          userForRealm.coCatchPhrase = catchPhrase
+//            //                          userForRealm.userId = idUser!
+//            //                          self.usersForDB.append(userForRealm)
+//            //                          self.users.append(user)
+//            //                        }
+//            //                      }
+//            //                    }
+//            //                  }
+//            //                }
+//            //              }
+//            
+//            
+//            self.saveUsersToDB()
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//              self.tableView.reloadData()
+//            })
+//          }
+          
+//        } catch {
+//          print("Error with Json: \(error)")
+//          
+//        }
       }
     }
     
