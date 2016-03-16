@@ -119,18 +119,18 @@ class UsersVC: UITableViewController {
         let jsonSwifty = JSON(data: data!)
         for (index, _) in jsonSwifty.enumerate() {
           
-          let name = jsonSwifty[index]["name"].string
-          let email = jsonSwifty[index]["email"].string
-          let catchPhrase = jsonSwifty[index]["company"]["catchPhrase"].string
-          let idUser = jsonSwifty[index]["id"].int
+          let name = jsonSwifty[index]["name"].stringValue
+          let email = jsonSwifty[index]["email"].stringValue
+          let catchPhrase = jsonSwifty[index]["company","catchPhrase"].stringValue
+          let idUser = jsonSwifty[index]["id"].intValue
           
           let user = User(userId: idUser, name: name, email: email, coCatchPhrase: catchPhrase)
           
           let userForRealm = UserRealm()
-          userForRealm.name = name!
-          userForRealm.email = email!
-          userForRealm.coCatchPhrase = catchPhrase!
-          userForRealm.userId = idUser!
+          userForRealm.name = name
+          userForRealm.email = email
+          userForRealm.coCatchPhrase = catchPhrase
+          userForRealm.userId = idUser
           self.usersForDB.append(userForRealm)
           self.users.append(user)
         }
